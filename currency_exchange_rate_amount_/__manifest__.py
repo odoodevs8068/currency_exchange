@@ -11,12 +11,12 @@
     ],
     'assets': {
         'web.assets_backend': [
-            "currency_exchange_rate/static/src/js/tax_total_new_widget.js",
+            "currency_exchange_rate_amount_/static/src/js/tax_total_new_widget.js",
         ],
 
         'web.assets_qweb': [
-            "currency_exchange_rate/static/src/xml/total_tax_json_widget_template.xml",
-            "currency_exchange_rate/static/src/xml/tax_total_tmpl_inherit.xml",
+            "currency_exchange_rate_amount_/static/src/xml/total_tax_json_widget_template.xml",
+            "currency_exchange_rate_amount_/static/src/xml/tax_total_tmpl_inherit.xml",
         ],
     },
     'installable': True,

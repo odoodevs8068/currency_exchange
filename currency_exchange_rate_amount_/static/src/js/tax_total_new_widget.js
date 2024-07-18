@@ -1,4 +1,4 @@
-/** @odoo-module alias=currency_exchange_rate.tax_group_owl **/
+/** @odoo-module alias=currency_exchange_rate_amount_.tax_group_owl **/
 "use strict";
 
 const { Component } = owl;
@@ -66,7 +66,7 @@ class ExchangeTaxGroupComponent extends Component {
     }
 }
 ExchangeTaxGroupComponent.props = ['taxGroup', 'allowTaxEdition', 'record'];
-ExchangeTaxGroupComponent.template = 'currency_exchange_rate.ExchangeTaxGroupComponent';
+ExchangeTaxGroupComponent.template = 'currency_exchange_rate_amount_.ExchangeTaxGroupComponent';
 
 class ExchangeTaxTotalsComponent extends AbstractFieldOwl {
     constructor(...args) {
@@ -97,7 +97,7 @@ class ExchangeTaxTotalsComponent extends AbstractFieldOwl {
         console.log("_onChangeTaxValueByTaxGroup", this.totals.value);
     }
 }
-ExchangeTaxTotalsComponent.template = 'currency_exchange_rate.ExchangeTaxTotalsField';
+ExchangeTaxTotalsComponent.template = 'currency_exchange_rate_amount_.ExchangeTaxTotalsField';
 ExchangeTaxTotalsComponent.components = { ExchangeTaxGroupComponent };
 
 field_registry.add('account-exchange-tax-totals-field', ExchangeTaxTotalsComponent);
