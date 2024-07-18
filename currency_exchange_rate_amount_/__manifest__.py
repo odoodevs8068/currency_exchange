@@ -23,4 +23,5 @@
     'application': True,
     'auto_install': False,
     'license': 'LGPL-3',
+    'images': ['static/description/assets/screenshots/banner.png'],
 }
