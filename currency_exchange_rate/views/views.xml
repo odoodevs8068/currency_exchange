@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="view_salesorder_line_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='order_lines']/group[1]/group[@name='sale_total']/field[@name='tax_totals_json']"
+                   position="attributes">
+                    <attribute name="widget">account-exchange-tax-totals-field</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group[@name='sale_header']"
+                   position="attributes">
+                    <attribute name="col">3</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group[@name='sale_header']" position="inside">
+                    <group>
+                        <label for="foreign_currency_id"/>
+                        <div class="o_row">
+                            <field name="foreign_currency_id" attrs="{'readonly': [('state', '=', 'cancel')]}" options="{'no_edit': True, 'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+                            <field name="exchange_rate" attrs="{'readonly': [('state', '=', 'cancel')]}"/>
+                        </div>
+                        <field name="exchange_total_amount" invisible="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    <record id="view_salesorder_line_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='amount_total']" position="after">
+                <field name="exchange_total_amount" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_quotation_tree_with_onboarding_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='amount_total']" position="after">
+                <field name="exchange_total_amount" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+        <record id="view_account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@id='invoice_tab']/group[1]/group[2]/group[1]/field[@name='tax_totals_json']"
+                   position="attributes">
+                    <attribute name="widget">account-exchange-tax-totals-field</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group[1]"
+                   position="attributes">
+                    <attribute name="col">3</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group[1]" position="inside">
+                    <group attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}">
+                        <label for="foreign_currency_id"/>
+                        <div class="o_row">
+                            <field name="foreign_currency_id" attrs="{'readonly': [('state', '=', 'cancel')]}"
+                                   options="{'no_edit': True, 'no_create': True, 'no_open': True, 'no_quick_create': True}"/>
+                            <field name="exchange_rate"/>
+                        </div>
+                        <field name="exchange_total_amount" invisible="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    <record id="view_account_move_tree_inherit" model="ir.ui.view">
+        <field name="name">account.move.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='currency_id']" position="after">
+                <field name="exchange_total_amount" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

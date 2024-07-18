@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <t t-inherit="account.TaxTotalsField" t-inherit-mode="extension">
+        <xpath expr="//table/tbody/tr[1]" position="after">
+            <t t-if="totals.value.formatted_exchange_total_amount">
+                <tr>
+                    <td class="o_td_label">
+                            <label class="o_form_label o_tax_total_label">Exchange Total:</label>
+                        </td>
+
+                        <td>
+                            <span
+                                name="exchange_total_amount"
+                                t-att-class="Object.keys(totals.value.groups_by_subtotal).length > 0 ? 'oe_subtotal_footer_separator' : ''"
+                                t-esc="totals.value.formatted_exchange_total_amount"
+                                style="white-space: nowrap; font-weight: bold; font-size: 1.3em;"
+                            />
+                        </td>
+                </tr>
+            </t>
+        </xpath>
+    </t>
+</odoo>
